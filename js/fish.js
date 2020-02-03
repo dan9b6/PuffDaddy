@@ -4,6 +4,7 @@ class Fish {
     this.posX = 50;
     this.posY = 100;
     this.gravity = 1;
+    this.moveUp = -25;
   }
 
   paint() {

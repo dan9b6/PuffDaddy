@@ -4,10 +4,11 @@ class Game {
     this.context = this.$canvas.getContext('2d');
     this.fish = new Fish(this);
     this.ground = new Ground(this);
+    this.control = new Controls(this);
     // this.hook = new Hook(this);
     this.hookArr = [];
     this.bg = new Bg(this);
-    this.speed = 3000;
+    this.speed = 1500;
     this.timer = 0;
   }
 
@@ -15,17 +16,9 @@ class Game {
     this.clearScreen();
     this.bg.paint();
     this.ground.paint();
-
-    // -----looping through an array with a for loop-----
-    // for (let i = 0; i < this.hookArr.length; i++) {
-    //   this.hookArr[i].paint();
-    // }
-
-    //---- looping through each element of an array with the map method -----
     this.hookArr.map(hook => {
       hook.paint();
     });
-
     this.fish.paint();
     // this.seaweed.paint();
     // this.bait.paint();
@@ -67,5 +60,9 @@ class Game {
 
   gravity(timestamp) {
     this.fish.posY += this.fish.gravity;
+  }
+
+  moveUp() {
+    this.fish.posY += this.fish.moveUp;
   }
 }

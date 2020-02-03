@@ -4,13 +4,19 @@ class Hook {
     this.posX = this.game.$canvas.width;
     this.posY = 0;
     this.height = 0;
-    this.speed = 1;
+    this.speed = 2;
+
+    this.setRandomHeight();
   }
 
   paint() {
     const context = this.game.context;
     context.fillStyle = 'gray';
-    context.fillRect(this.posX, this.posY, 25, 150);
+    context.fillRect(this.posX, this.posY, 25, this.height);
+  }
+
+  setRandomHeight() {
+    this.height = Math.random() * (230 - 50) + 50;
   }
 
   runLogic() {
