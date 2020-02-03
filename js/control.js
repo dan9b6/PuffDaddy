@@ -11,7 +11,7 @@ class Controls {
       // React based on the key pressed
       switch (event.keyCode) {
         case 32:
-          this.game.moveUp();
+          this.game.fish.moveUp();
           break;
       }
     });

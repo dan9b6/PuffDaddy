@@ -3,8 +3,24 @@ class Fish {
     this.game = game;
     this.posX = 50;
     this.posY = 100;
-    this.gravity = 1;
-    this.moveUp = -25;
+    // this.width = 40;
+    // this.height = 40;
+    this.velocity = 1;
+    this.gravity = 1 / 50;
+    this.moveUpDistance = -25;
+  }
+
+  // Movement of fish!
+
+  moveUp() {
+    // this.posY += this.moveUpDistance;
+    this.velocity = -2;
+    this.velocity = Math.max(this.velocity, -4);
+  }
+
+  runLogic() {
+    this.velocity = Math.min(this.velocity + this.gravity, 1);
+    this.posY += this.velocity;
   }
 
   paint() {
