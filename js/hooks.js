@@ -1,5 +1,0 @@
-class Hooks(){
-  constructor(){
-    
-  }
-}
