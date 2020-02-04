@@ -1,12 +1,22 @@
 class Ground {
   constructor(game) {
     this.game = game;
-    // this.height = 200;
+    this.groundY = 550;
   }
   paint() {
     const context = this.game.context;
 
     context.fillStyle = 'yellow';
-    context.fillRect(0, 550, this.game.$canvas.width, 200);
+    context.fillRect(0, this.groundY, this.game.$canvas.width, 200);
+  }
+  checkCollision() {
+    const fish = this.game.fish;
+    const fishY = fish.posY;
+    const fishR = fish.radius;
+
+    if (fishY + fishR >= this.groundY) {
+      console.log('Hit Grounds');
+      this.game.reset();
+    }
   }
 }

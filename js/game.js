@@ -6,12 +6,14 @@ class Game {
     this.ground = new Ground(this);
     this.control = new Controls(this);
     this.hook = new Hook(this);
+    this.timer = new Timer(this);
     this.hookArr = [];
     this.seaweedArr = [];
     this.bg = new Bg(this);
-    this.speed = 5000;
+    this.speed = 3000;
     this.timer = 0;
-    //this.hookForChecking = new Hook(this, this.$canvas.width, 0, 250);
+    this.clock = 0;
+    this.currentTime = 0;
   }
 
   clearScreen() {
@@ -20,9 +22,21 @@ class Game {
 
   start() {
     this.loop();
+    this.reset();
+    this.updateTimer();
   }
 
-  reset() {}
+  reset() {
+    this.hookArr = [];
+    this.seaweedArr = [];
+  }
+
+  updateTimer() {
+    this.clock = setInterval(() => {
+      document.getElementById('timer').innerHTML = 'Score: ' + this.currentTime;
+      return (this.currentTime += 1);
+    }, 1000);
+  }
 
   runLogic(timestamp) {
     if (this.timer < timestamp - this.speed) {
@@ -41,9 +55,6 @@ class Game {
       this.seaweedArr.push(seaweed);
     }
 
-    // this.hookForChecking.runLogic();
-    // this.hookForChecking.checkCollision();
-
     for (let i = 0; i < this.hookArr.length; i++) {
       this.hookArr[i].runLogic();
       this.hookArr[i].checkCollision();
@@ -54,33 +65,9 @@ class Game {
       seaweed.checkCollision();
     });
 
-    /*
-    for (let i = 0; i < this.seaweedArr.length; i++) {
-      this.seaweedArr[i].runLogic();
-    }
-    */
-
     this.fish.runLogic(timestamp);
+    this.ground.checkCollision();
   }
-
-  loop(timestamp) {
-    this.paint();
-    this.runLogic(timestamp);
-    window.requestAnimationFrame(timestamp => {
-      this.loop(timestamp);
-    });
-    //window.requestAnimationFrame(this.loop);
-  }
-
-  // checkCollision () {
-  //   if (
-  //     blockX + blockWidth > obstacleX &&
-  //     blockX < obstacleX + obstacleWidth &&
-  //     blockY + blockHeight > obstacleY &&
-  //     blockY < obstacleY + obstacleHeight
-  //   ) {
-  //     gameIsRunning = false;
-  //   }
 
   loop(timestamp) {
     this.paint();
@@ -94,7 +81,6 @@ class Game {
     this.clearScreen();
     this.bg.paint();
     this.ground.paint();
-    //this.hookForChecking.paint();
     this.hookArr.map(hook => {
       hook.paint();
     });

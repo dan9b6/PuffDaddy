@@ -22,13 +22,12 @@ class Hook extends Obstacle {
     const dx = Math.sqrt((fishX - obstX) ** 2);
     const rx = fishR + obstW / 2;
 
-    const dy = Math.sqrt((fishY - obstY) ** 2);
+    const dy = Math.sqrt((fishY + obstY) ** 2);
     const ry = fishR + obstH;
 
-    // console.log(dx, rx);
-    // console.log(dy, ry);
     const type = Hook.name;
     if (rx > dx && ry > dy) {
+      this.game.reset();
       console.log(type, 'Collision');
     } else if (rx < dx && ry < dy) {
       //console.log('No collision');

@@ -32,6 +32,7 @@ class Seaweed extends Obstacle {
     // console.log(dy, ry);
     const type = Seaweed.name;
     if (rx > dx && ry > dy) {
+      this.game.reset();
       console.log(type, 'Collision');
     } else if (rx < dx && ry < dy) {
       //console.log(type, 'No collision');
