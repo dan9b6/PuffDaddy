@@ -10,9 +10,9 @@ class Game {
     this.hookArr = [];
     this.seaweedArr = [];
     this.bg = new Bg(this);
-    this.speed = 3000;
-    this.timer = 0;
-    this.clock = 0;
+    this.speed = 2000;
+    this.timer = 1000;
+    this.interval = 0;
     this.currentTime = 0;
   }
 
@@ -21,28 +21,35 @@ class Game {
   }
 
   start() {
-    this.loop();
     this.reset();
+    this.loop();
     this.updateTimer();
   }
 
   reset() {
     this.hookArr = [];
     this.seaweedArr = [];
+    this.fish.posX = 200;
+    this.fish.posY = 100;
+    this.currentTime = 0;
+    console.log('hit', this.clock);
   }
 
   updateTimer() {
-    this.clock = setInterval(() => {
+    this.interval = setInterval(() => {
       document.getElementById('timer').innerHTML = 'Score: ' + this.currentTime;
       return (this.currentTime += 1);
-    }, 1000);
+    }, 2000);
+    // if (checkCollision === true) {
+    //   clearInterval(this.clock);
+    // }
   }
 
   runLogic(timestamp) {
     if (this.timer < timestamp - this.speed) {
       this.timer = timestamp;
       const positionX = this.$canvas.width;
-      const hookHeight = Math.random() * (400 - 250) + 250;
+      const hookHeight = Math.random() * (450 - 250) + 250;
 
       const hook = new Hook(this, positionX, 0, hookHeight);
       this.hookArr.push(hook);
@@ -72,6 +79,7 @@ class Game {
   loop(timestamp) {
     this.paint();
     this.runLogic(timestamp);
+    console.log(this.currentTime);
     window.requestAnimationFrame(timestamp => {
       this.loop(timestamp);
     });

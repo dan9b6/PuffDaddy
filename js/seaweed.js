@@ -28,8 +28,6 @@ class Seaweed extends Obstacle {
     const dy = Math.sqrt((fishY - canvasH) ** 2);
     const ry = fishR + obstH;
 
-    // console.log(dx, rx);
-    // console.log(dy, ry);
     const type = Seaweed.name;
     if (rx > dx && ry > dy) {
       this.game.reset();
@@ -43,5 +41,17 @@ class Seaweed extends Obstacle {
     const context = this.game.context;
     context.fillStyle = 'green';
     context.fillRect(this.posX, this.posY, this.width, this.height);
+
+    const seaweedUrl = '/images/seaweed.png';
+
+    const seaweed = new Image();
+    seaweed.src = seaweedUrl;
+    this.game.context.drawImage(
+      seaweed,
+      this.posX - 35,
+      this.posY - 50,
+      this.width + 100,
+      this.height + 100
+    );
   }
 }

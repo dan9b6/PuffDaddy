@@ -9,7 +9,7 @@ class Obstacle {
   }
 
   setRandomHeight() {
-    this.height = Math.random() * (400 - 250) + 250;
+    this.height = Math.random() * (900 - 100) + 200;
   }
 
   runLogic() {

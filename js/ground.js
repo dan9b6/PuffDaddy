@@ -15,7 +15,6 @@ class Ground {
     const fishR = fish.radius;
 
     if (fishY + fishR >= this.groundY) {
-      console.log('Hit Grounds');
       this.game.reset();
     }
   }
