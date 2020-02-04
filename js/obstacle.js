@@ -3,10 +3,9 @@ class Obstacle {
     this.game = game;
     this.posX = x;
     this.posY = y;
+    this.width = 25;
     this.height = height;
     this.speed = 2;
-
-    // this.setRandomHeight();
   }
 
   setRandomHeight() {

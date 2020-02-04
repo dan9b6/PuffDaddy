@@ -5,25 +5,13 @@ class Game {
     this.fish = new Fish(this);
     this.ground = new Ground(this);
     this.control = new Controls(this);
-    // this.hook = new Hook(this);
+    this.hook = new Hook(this);
     this.hookArr = [];
     this.seaweedArr = [];
     this.bg = new Bg(this);
-    this.speed = 2500;
+    this.speed = 5000;
     this.timer = 0;
-  }
-
-  paint() {
-    this.clearScreen();
-    this.bg.paint();
-    this.ground.paint();
-    this.hookArr.map(hook => {
-      hook.paint();
-    });
-    this.seaweedArr.map(seaweed => {
-      seaweed.paint();
-    });
-    this.fish.paint();
+    //this.hookForChecking = new Hook(this, this.$canvas.width, 0, 250);
   }
 
   clearScreen() {
@@ -53,13 +41,19 @@ class Game {
       this.seaweedArr.push(seaweed);
     }
 
+    // this.hookForChecking.runLogic();
+    // this.hookForChecking.checkCollision();
+
     for (let i = 0; i < this.hookArr.length; i++) {
       this.hookArr[i].runLogic();
+      this.hookArr[i].checkCollision();
     }
 
     this.seaweedArr.map(seaweed => {
       seaweed.runLogic();
+      seaweed.checkCollision();
     });
+
     /*
     for (let i = 0; i < this.seaweedArr.length; i++) {
       this.seaweedArr[i].runLogic();
@@ -77,30 +71,36 @@ class Game {
     });
     //window.requestAnimationFrame(this.loop);
   }
+
+  // checkCollision () {
+  //   if (
+  //     blockX + blockWidth > obstacleX &&
+  //     blockX < obstacleX + obstacleWidth &&
+  //     blockY + blockHeight > obstacleY &&
+  //     blockY < obstacleY + obstacleHeight
+  //   ) {
+  //     gameIsRunning = false;
+  //   }
+
+  loop(timestamp) {
+    this.paint();
+    this.runLogic(timestamp);
+    window.requestAnimationFrame(timestamp => {
+      this.loop(timestamp);
+    });
+  }
+
+  paint() {
+    this.clearScreen();
+    this.bg.paint();
+    this.ground.paint();
+    //this.hookForChecking.paint();
+    this.hookArr.map(hook => {
+      hook.paint();
+    });
+    this.seaweedArr.map(seaweed => {
+      seaweed.paint();
+    });
+    this.fish.paint();
+  }
 }
-
-// checkCollision(){
-//   if(this.fish.posY + this.fish.height >= this.ground.height{
-//     gameIsRunning = false;
-//   }
-
-// checkCollision () {
-//   const blockX = block.positionX;
-//   const blockY = block.positionY;
-//   const blockWidth = block.dimensions;
-//   const blockHeight = block.dimensions;
-
-//   const obstacleX = this.positionX;
-//   const obstacleY = this.positionY;
-//   const obstacleWidth = this.width;
-//   const obstacleHeight = this.height;
-
-//   if (
-//     blockX + blockWidth > obstacleX &&
-//     blockX < obstacleX + obstacleWidth &&
-//     blockY + blockHeight > obstacleY &&
-//     blockY < obstacleY + obstacleHeight
-//   ) {
-//     gameIsRunning = false;
-//   }
-// }
