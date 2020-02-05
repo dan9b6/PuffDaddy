@@ -35,9 +35,6 @@ class Hook extends Obstacle {
     context.fillStyle = '#4A2D05';
     context.fillRect(this.posX, this.posY, this.width, this.height - 35);
 
-    // context.fillStyle = 'red';
-    // context.fillRect(this.posX - 10, this.posY + this.height - 30, this.width + 0, 30);
-
     const hookUrl = '/images/hook.png';
 
     const hook = new Image();

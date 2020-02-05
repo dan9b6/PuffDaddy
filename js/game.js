@@ -5,7 +5,7 @@ class Game {
 
     this.hookArr = [];
     this.seaweedArr = [];
-    this.speed = 1800;
+    this.speed = 1600;
     this.timer = 1000;
     // this.interval = 0;
     this.score = 0;
@@ -27,6 +27,7 @@ class Game {
     this.ground = new Ground(this);
     this.control = new Controls(this);
     this.hook = new Hook(this);
+    this.bottle = new Bottle(this);
     this.bg = new Bg(this);
     if (this.highScore < this.score) {
       this.highScore = this.score;
@@ -34,6 +35,7 @@ class Game {
     this.score = 0;
     this.hookArr = [];
     this.seaweedArr = [];
+    this.bottleArr = [];
     this.speed = 2000;
     this.timer = 1000;
     document.getElementById('highscore').innerHTML =
@@ -69,6 +71,7 @@ class Game {
 
     this.fish.runLogic(timestamp);
     this.ground.checkCollision();
+    this.bottle.runLogic();
   }
 
   loop(timestamp) {
@@ -90,6 +93,7 @@ class Game {
   //PAINT SECTION
 
   paint() {
+    console.log('painting');
     this.clearScreen();
     this.bg.paint();
     this.seaweedArr.map(seaweed => {
@@ -98,6 +102,7 @@ class Game {
     this.hookArr.map(hook => {
       hook.paint();
     });
+    this.bottle.paint();
     this.fish.paint();
     this.ground.paint();
   }
