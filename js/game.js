@@ -5,16 +5,17 @@ class Game {
 
     this.hookArr = [];
     this.seaweedArr = [];
-    this.speed = 2000;
+    this.speed = 1800;
     this.timer = 1000;
-    this.interval = 0;
-    this.currentTime = 0;
+    // this.interval = 0;
+    this.score = 0;
+    this.highScore = 0;
     this.finish = true;
   }
 
   start() {
     this.reset();
-    this.updateTimer();
+    // this.updateTimer();
     if (this.finish) {
       this.finish = !this.finish;
       this.loop();
@@ -27,23 +28,17 @@ class Game {
     this.control = new Controls(this);
     this.hook = new Hook(this);
     this.bg = new Bg(this);
-    this.highScore = new Timer(this);
-
+    if (this.highScore < this.score) {
+      this.highScore = this.score;
+    }
+    this.score = 0;
     this.hookArr = [];
     this.seaweedArr = [];
     this.speed = 2000;
     this.timer = 1000;
-    this.currentTime = 0;
+    document.getElementById('highscore').innerHTML =
+      'Highscore: ' + Math.floor(this.highScore / 10);
   }
-
-  updateTimer() {
-    this.interval = setInterval(() => {
-      document.getElementById('timer').innerHTML = 'Score: ' + this.currentTime;
-      return (this.currentTime += 1);
-    }, 2000);
-  }
-
-  // LOGIC AND LOOP
 
   runLogic(timestamp) {
     if (this.timer < timestamp - this.speed) {
@@ -72,19 +67,19 @@ class Game {
       seaweed.checkCollision();
     });
 
-    this.highScore.updateHighScore();
-    this.highScore.setHighScore();
     this.fish.runLogic(timestamp);
     this.ground.checkCollision();
   }
 
   loop(timestamp) {
     //console.log(this.finish);
-    this.paint();
     this.runLogic(timestamp);
+    this.paint();
+    document.getElementById('timer').innerHTML = 'Score: ' + Math.floor(this.score / 10);
     if (!this.finish) {
       const animationLoop = window.requestAnimationFrame(timestamp => {
         this.loop(timestamp);
+        this.score += 1;
       });
     }
     // else {
@@ -97,14 +92,14 @@ class Game {
   paint() {
     this.clearScreen();
     this.bg.paint();
-    this.ground.paint();
-    this.hookArr.map(hook => {
-      hook.paint();
-    });
     this.seaweedArr.map(seaweed => {
       seaweed.paint();
     });
+    this.hookArr.map(hook => {
+      hook.paint();
+    });
     this.fish.paint();
+    this.ground.paint();
   }
 
   clearScreen() {
