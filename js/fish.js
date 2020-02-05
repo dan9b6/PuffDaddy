@@ -14,7 +14,6 @@ class Fish {
   // Movement of fish!
 
   moveUp() {
-    // this.posY += this.moveUpDistance;
     this.velocity = -4;
     this.velocity = Math.max(this.velocity, -4);
   }

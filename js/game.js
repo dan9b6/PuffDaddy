@@ -6,33 +6,34 @@ class Game {
     this.ground = new Ground(this);
     this.control = new Controls(this);
     this.hook = new Hook(this);
-    this.timer = new Timer(this);
+    this.bg = new Bg(this);
+    this.highScore = new Timer(this);
+
     this.hookArr = [];
     this.seaweedArr = [];
-    this.bg = new Bg(this);
     this.speed = 2000;
     this.timer = 1000;
     this.interval = 0;
     this.currentTime = 0;
-  }
-
-  clearScreen() {
-    this.context.clearRect(0, 0, this.$canvas.width, this.$canvas.height);
+    this.finish = true;
   }
 
   start() {
-    this.reset();
+    this.finish = false;
+    //this.reset();
     this.loop();
     this.updateTimer();
   }
 
+  stop() {}
+
   reset() {
+    this.finish = false;
     this.hookArr = [];
     this.seaweedArr = [];
     this.fish.posX = 200;
     this.fish.posY = 100;
     this.currentTime = 0;
-    console.log('hit', this.clock);
   }
 
   updateTimer() {
@@ -40,10 +41,9 @@ class Game {
       document.getElementById('timer').innerHTML = 'Score: ' + this.currentTime;
       return (this.currentTime += 1);
     }, 2000);
-    // if (checkCollision === true) {
-    //   clearInterval(this.clock);
-    // }
   }
+
+  // LOGIC AND LOOP
 
   runLogic(timestamp) {
     if (this.timer < timestamp - this.speed) {
@@ -72,18 +72,26 @@ class Game {
       seaweed.checkCollision();
     });
 
+    this.highScore.updateHighScore();
+    this.highScore.setHighScore();
     this.fish.runLogic(timestamp);
     this.ground.checkCollision();
   }
 
   loop(timestamp) {
+    //console.log(this.finish);
     this.paint();
     this.runLogic(timestamp);
-    console.log(this.currentTime);
-    window.requestAnimationFrame(timestamp => {
-      this.loop(timestamp);
-    });
+    if (!this.finish) {
+      const animationLoop = window.requestAnimationFrame(timestamp => {
+        this.loop(timestamp);
+      });
+    } else {
+      window.cancelAnimationFrame(animationLoop);
+    }
   }
+
+  //PAINT SECTION
 
   paint() {
     this.clearScreen();
@@ -96,5 +104,9 @@ class Game {
       seaweed.paint();
     });
     this.fish.paint();
+  }
+
+  clearScreen() {
+    this.context.clearRect(0, 0, this.$canvas.width, this.$canvas.height);
   }
 }
