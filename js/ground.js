@@ -16,6 +16,7 @@ class Ground {
 
     if (fishY + fishR >= this.groundY) {
       this.game.reset();
+      this.game.finish = true;
     }
   }
 }

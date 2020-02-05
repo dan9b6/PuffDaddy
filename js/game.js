@@ -2,12 +2,6 @@ class Game {
   constructor($canvas) {
     this.$canvas = $canvas;
     this.context = this.$canvas.getContext('2d');
-    this.fish = new Fish(this);
-    this.ground = new Ground(this);
-    this.control = new Controls(this);
-    this.hook = new Hook(this);
-    this.bg = new Bg(this);
-    this.highScore = new Timer(this);
 
     this.hookArr = [];
     this.seaweedArr = [];
@@ -19,20 +13,26 @@ class Game {
   }
 
   start() {
-    this.finish = false;
-    //this.reset();
-    this.loop();
+    this.reset();
     this.updateTimer();
+    if (this.finish) {
+      this.finish = !this.finish;
+      this.loop();
+    }
   }
 
-  stop() {}
-
   reset() {
-    this.finish = false;
+    this.fish = new Fish(this);
+    this.ground = new Ground(this);
+    this.control = new Controls(this);
+    this.hook = new Hook(this);
+    this.bg = new Bg(this);
+    this.highScore = new Timer(this);
+
     this.hookArr = [];
     this.seaweedArr = [];
-    this.fish.posX = 200;
-    this.fish.posY = 100;
+    this.speed = 2000;
+    this.timer = 1000;
     this.currentTime = 0;
   }
 
@@ -86,9 +86,10 @@ class Game {
       const animationLoop = window.requestAnimationFrame(timestamp => {
         this.loop(timestamp);
       });
-    } else {
-      window.cancelAnimationFrame(animationLoop);
     }
+    // else {
+    //   window.cancelAnimationFrame(animationLoop);
+    // }
   }
 
   //PAINT SECTION
