@@ -17,24 +17,21 @@ class Bottle {
   }
 
   checkCollision() {
-    const fish = this.game.fish;
-    const fishX = fish.posX;
-    const fishY = fish.posY;
-    const fishR = fish.radius;
-
-    const bottleX = this.posX;
-    const bottleW = this.width;
-    const bottleH = this.height;
-
-    const dx = Math.sqrt((fishX - bottleX) ** 2);
-    const rx = fishR + bottleW / 2;
-
-    const dy = Math.sqrt((fishY - bottleH) ** 2);
-    const ry = fishR + bottleH;
-
-    if (rx > dx && ry > dy) {
-      console.log('Collision');
-    } else if (rx < dx && ry < dy) {
+    const fishX = this.game.fish.posX - 25;
+    const fishY = this.game.fish.posY - 30;
+    const fishWidth = this.game.fish.width - 60;
+    const fishHeight = this.game.fish.height - 50;
+    const bottleX = this.posX + 5;
+    const bottleY = this.posY + 25;
+    const bottleWidth = this.width - 50;
+    const bottleHeight = this.height - 50;
+    if (
+      fishX + fishWidth > bottleX &&
+      fishX < bottleX + bottleWidth &&
+      fishY + fishHeight > bottleY &&
+      fishY < bottleY + bottleHeight
+    ) {
+      console.log('I am fuming mate! ');
     }
   }
 
@@ -53,5 +50,6 @@ class Bottle {
     const bottle = new Image();
     bottle.src = bottleUrl;
     this.game.context.drawImage(bottle, this.posX, this.posY, this.width, this.height);
+    // this.game.context.fillRect(this.posX + 5, this.posY + 25, this.width - 50, this.height - 50);
   }
 }

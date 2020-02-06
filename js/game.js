@@ -86,14 +86,12 @@ class Game {
       const animationLoop = window.requestAnimationFrame(timestamp => {
         this.loop(timestamp);
         this.score += 1;
-        console.log('score', this.score);
       });
     }
   }
 
   bottleAppearLogic() {
-    if (this.score % 300 === 0) {
-      console.log('here comes a new bottle!');
+    if (this.score % 100 === 0) {
       const bottle = new Bottle(this);
       this.bottleArr.push(bottle);
     }
