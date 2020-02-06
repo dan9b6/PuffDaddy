@@ -25,6 +25,8 @@ class Hook extends Obstacle {
     if (rx > dx && ry > dy) {
       this.game.reset();
       this.game.finish = true;
+      var audio = new Audio('/audio/pop.mov');
+      audio.play();
       console.log(type, 'Collision');
     } else if (rx < dx && ry < dy) {
     }

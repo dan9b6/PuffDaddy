@@ -35,8 +35,10 @@ class Bottle {
         // this.game.fish.posX = this.game.fish.posX + 25;
         // this.game.fish.posY = this.game.fish.posY + 25;
         this.game.fish.width = this.game.fish.width + 25;
-        this.game.fish.height = this.game.fish.height + 25;
+        this.game.fish.height = this.game.fish.height + 30;
         console.log('I am fuming mate! ');
+        var audio = new Audio('/audio/bottle.mp3');
+        audio.play();
       }
       //this.game.fish.radius = this.game.fish.radius + 25;
       this.game.fish.url = '/images/angryfish.png';
