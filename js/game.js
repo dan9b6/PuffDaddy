@@ -6,7 +6,7 @@ class Game {
     this.hookArr = [];
     this.seaweedArr = [];
     this.bottleArr = [];
-    this.speed = 1600;
+    this.speed = 1900;
     this.timer = 1000;
     // this.interval = 0;
     this.score = 10;

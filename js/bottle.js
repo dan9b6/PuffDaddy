@@ -31,21 +31,21 @@ class Bottle {
       fishY + fishHeight > bottleY &&
       fishY < bottleY + bottleHeight
     ) {
-      console.log('I am fuming mate! ');
       if (this.game.fish.url === '/images/fish.png') {
-        this.game.fish.posX = this.game.fish.posX + 25;
-        this.game.fish.posY = this.game.fish.posY + 25;
+        // this.game.fish.posX = this.game.fish.posX + 25;
+        // this.game.fish.posY = this.game.fish.posY + 25;
         this.game.fish.width = this.game.fish.width + 25;
         this.game.fish.height = this.game.fish.height + 25;
+        console.log('I am fuming mate! ');
       }
       //this.game.fish.radius = this.game.fish.radius + 25;
       this.game.fish.url = '/images/angryfish.png';
       setTimeout(() => {
         this.game.fish.url = '/images/fish.png';
-        this.game.fish.posX = this.game.fish.posX - 25;
-        this.game.fish.posY = this.game.fish.posY - 25;
-        this.game.fish.width = this.game.fish.width - 25;
-        this.game.fish.height = this.game.fish.height - 25;
+        // this.game.fish.posX = this.game.fish.posX - 25;
+        // this.game.fish.posY = this.game.fish.posY - 25;
+        this.game.fish.width = 110;
+        this.game.fish.height = 110;
       }, 5000);
     }
   }

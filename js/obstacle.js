@@ -5,7 +5,7 @@ class Obstacle {
     this.posY = y;
     this.width = 25;
     this.height = height;
-    this.speed = 3;
+    this.speed = 2;
   }
 
   setRandomHeight() {
