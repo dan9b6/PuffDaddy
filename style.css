@@ -4,13 +4,26 @@ canvas {
 
 body {
   text-align: center;
+  background-color: #0c78de;
+  font-family: 'Bebas Neue', cursive;
 }
 
-/* #start-button {
+#start-button {
+  display: block;
+  text-align: center;
+  align-items: center;
+  font-size: 24px;
+  font-family: 'Bebas Neue', cursive;
+}
+
+p {
+  color: #e6edf3;
+  font-size: 24px;
+}
+
+.center {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  align-content: stretch;
-} */
+  text-align: center;
+}
