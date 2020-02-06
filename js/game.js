@@ -91,7 +91,7 @@ class Game {
   }
 
   bottleAppearLogic() {
-    if (this.score % 100 === 0) {
+    if (this.score % 500 === 0) {
       const bottle = new Bottle(this);
       this.bottleArr.push(bottle);
     }

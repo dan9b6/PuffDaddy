@@ -10,6 +10,7 @@ class Fish {
     this.radius = 20;
     this.moveUpDistance = -40;
     this.puff = false;
+    this.url = '/images/fish.png';
   }
 
   // Movement of fish!
@@ -25,18 +26,16 @@ class Fish {
   }
 
   paint() {
-    // const context = this.game.context;
+    const context = this.game.context;
+
+    const fish = new Image();
+    fish.src = this.url;
+    this.game.context.drawImage(fish, this.posX - 50, this.posY - 50, this.width, this.height);
     // context.beginPath();
     // context.arc(this.posX, this.posY, this.radius, 0, 2 * Math.PI);
     // context.fillStyle = 'orange';
     // context.fill();
     // context.stroke();
     // context.closePath();
-
-    const fishURL = '/images/fish.png';
-
-    const fish = new Image();
-    fish.src = fishURL;
-    this.game.context.drawImage(fish, this.posX - 50, this.posY - 50, this.width, this.height);
   }
 }
