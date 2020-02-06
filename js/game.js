@@ -9,7 +9,7 @@ class Game {
     this.speed = 1600;
     this.timer = 1000;
     // this.interval = 0;
-    this.score = 0;
+    this.score = 10;
     this.highScore = 0;
     this.finish = true;
   }
@@ -27,12 +27,11 @@ class Game {
     this.ground = new Ground(this);
     this.control = new Controls(this);
     this.hook = new Hook(this);
-    this.bottle = new Bottle(this);
     this.bg = new Bg(this);
     if (this.highScore < this.score) {
       this.highScore = this.score;
     }
-    this.score = 0;
+    this.score = 10;
     this.hookArr = [];
     this.seaweedArr = [];
     this.bottleArr = [];
@@ -69,32 +68,34 @@ class Game {
       seaweed.checkCollision();
     });
 
-    for (let i = 0; i < this.bottleArr.length; i++) {
-      this.bottleArr[i].runLogic();
-    }
+    this.bottleArr.map(bottle => {
+      bottle.runLogic();
+      bottle.checkCollision();
+    });
 
     this.fish.runLogic(timestamp);
     this.ground.checkCollision();
-    this.bottleLogic();
-    this.bottle.checkCollision();
-  }
-
-  bottleLogic() {
-    if (this.score % this.bottle.interval === 0) {
-      const bottle = new Bottle(this);
-      this.bottleArr.push(bottle);
-    }
+    this.bottleAppearLogic();
   }
 
   loop(timestamp) {
     this.runLogic(timestamp);
-    this.paint();
     document.getElementById('timer').innerHTML = 'Score: ' + Math.floor(this.score / 10);
     if (!this.finish) {
+      this.paint();
       const animationLoop = window.requestAnimationFrame(timestamp => {
         this.loop(timestamp);
         this.score += 1;
+        console.log('score', this.score);
       });
+    }
+  }
+
+  bottleAppearLogic() {
+    if (this.score % 300 === 0) {
+      console.log('here comes a new bottle!');
+      const bottle = new Bottle(this);
+      this.bottleArr.push(bottle);
     }
   }
 

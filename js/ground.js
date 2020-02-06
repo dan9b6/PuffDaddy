@@ -23,6 +23,7 @@ class Ground {
     const fishR = fish.radius;
 
     if (fishY + fishR >= this.groundY) {
+      console.log('dead');
       this.game.reset();
       this.game.finish = true;
     }

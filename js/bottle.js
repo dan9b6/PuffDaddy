@@ -23,7 +23,6 @@ class Bottle {
     const fishR = fish.radius;
 
     const bottleX = this.posX;
-    const bottleY = this.posY;
     const bottleW = this.width;
     const bottleH = this.height;
 
@@ -41,17 +40,16 @@ class Bottle {
 
   setRandomPosition() {
     this.posY = Math.random() * 250 + 100;
-    console.log(this.posY);
   }
 
   runLogic() {
+    //console.log('im running');
     this.posY += this.gravityY;
     this.posX -= this.gravityX;
   }
 
   paint() {
     const bottleUrl = this.image;
-
     const bottle = new Image();
     bottle.src = bottleUrl;
     this.game.context.drawImage(bottle, this.posX, this.posY, this.width, this.height);
