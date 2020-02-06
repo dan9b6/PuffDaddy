@@ -5,6 +5,7 @@ class Game {
 
     this.hookArr = [];
     this.seaweedArr = [];
+    this.bottleArr = [];
     this.speed = 1600;
     this.timer = 1000;
     // this.interval = 0;
@@ -15,7 +16,6 @@ class Game {
 
   start() {
     this.reset();
-    // this.updateTimer();
     if (this.finish) {
       this.finish = !this.finish;
       this.loop();
@@ -69,13 +69,24 @@ class Game {
       seaweed.checkCollision();
     });
 
+    for (let i = 0; i < this.bottleArr.length; i++) {
+      this.bottleArr[i].runLogic();
+    }
+
     this.fish.runLogic(timestamp);
     this.ground.checkCollision();
-    this.bottle.runLogic();
+    this.bottleLogic();
+    this.bottle.checkCollision();
+  }
+
+  bottleLogic() {
+    if (this.score % this.bottle.interval === 0) {
+      const bottle = new Bottle(this);
+      this.bottleArr.push(bottle);
+    }
   }
 
   loop(timestamp) {
-    //console.log(this.finish);
     this.runLogic(timestamp);
     this.paint();
     document.getElementById('timer').innerHTML = 'Score: ' + Math.floor(this.score / 10);
@@ -85,15 +96,11 @@ class Game {
         this.score += 1;
       });
     }
-    // else {
-    //   window.cancelAnimationFrame(animationLoop);
-    // }
   }
 
   //PAINT SECTION
 
   paint() {
-    console.log('painting');
     this.clearScreen();
     this.bg.paint();
     this.seaweedArr.map(seaweed => {
@@ -102,7 +109,9 @@ class Game {
     this.hookArr.map(hook => {
       hook.paint();
     });
-    this.bottle.paint();
+    this.bottleArr.map(bottle => {
+      bottle.paint();
+    });
     this.fish.paint();
     this.ground.paint();
   }

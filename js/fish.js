@@ -9,6 +9,7 @@ class Fish {
     this.gravity = 1 / 5;
     this.radius = 20;
     this.moveUpDistance = -40;
+    this.puff = false;
   }
 
   // Movement of fish!
