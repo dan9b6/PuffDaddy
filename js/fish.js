@@ -31,11 +31,5 @@ class Fish {
     const fish = new Image();
     fish.src = this.url;
     this.game.context.drawImage(fish, this.posX - 50, this.posY - 50, this.width, this.height);
-    // context.beginPath();
-    // context.arc(this.posX, this.posY, this.radius, 0, 2 * Math.PI);
-    // context.fillStyle = 'orange';
-    // context.fill();
-    // context.stroke();
-    // context.closePath();
   }
 }

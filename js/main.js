@@ -10,6 +10,10 @@ start.addEventListener('click', () => {
   startImg.style.display = 'none';
   gameoverImg.style.display = 'none';
   game.start();
-  var audio = new Audio('/audio/audio.mp3');
-  audio.play();
+  game.audioStart();
+});
+
+const playAgain = document.getElementById('playagain-button');
+playAgain.addEventListener('click', () => {
+  location.reload();
 });

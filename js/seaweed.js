@@ -14,7 +14,6 @@ class Seaweed extends Obstacle {
 
     const dx = Math.sqrt((fishX - obstX) ** 2);
     const rx = fishR + obstW / 2;
-
     const dy = Math.sqrt((fishY - canvasH) ** 2);
     const ry = fishR + obstH;
 
@@ -24,10 +23,10 @@ class Seaweed extends Obstacle {
       this.game.finish = true;
       var audio = new Audio('/audio/seaweed.mp3');
       audio.play();
-      console.log(type, 'Collision');
       this.game.clearScreen();
       gameoverImg.style.display = 'block';
-    } else if (rx < dx && ry < dy) {
+      playAgain.style.display = 'block';
+      start.style.display = 'none';
     }
   }
 
@@ -35,9 +34,7 @@ class Seaweed extends Obstacle {
     const context = this.game.context;
     context.fillStyle = 'green';
     context.fillRect(this.posX, this.posY, this.width, this.height);
-
     const seaweedUrl = '/images/seaweed.png';
-
     const seaweed = new Image();
     seaweed.src = seaweedUrl;
     this.game.context.drawImage(

@@ -2,6 +2,7 @@ class Game {
   constructor($canvas) {
     this.$canvas = $canvas;
     this.context = this.$canvas.getContext('2d');
+    // this.game = game;
 
     this.hookArr = [];
     this.seaweedArr = [];
@@ -12,6 +13,12 @@ class Game {
     this.score = 10;
     this.highScore = 0;
     this.finish = true;
+  }
+
+  audioStart() {
+    console.log('start');
+    let audio = new Audio('/audio/audio.mp3');
+    audio.play();
   }
 
   start() {
@@ -117,5 +124,17 @@ class Game {
 
   clearScreen() {
     this.context.clearRect(0, 0, this.$canvas.width, this.$canvas.height);
+  }
+
+  // Audio
+
+  startMusic() {
+    var audio = new Audio('/audio/audio.mp3');
+    audio.play();
+  }
+
+  stopMusic() {
+    var audio = new Audio('/audio/audio.mp3');
+    audio.pause();
   }
 }

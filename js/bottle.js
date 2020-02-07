@@ -32,20 +32,15 @@ class Bottle {
       fishY < bottleY + bottleHeight
     ) {
       if (this.game.fish.url === '/images/fish.png') {
-        // this.game.fish.posX = this.game.fish.posX + 25;
-        // this.game.fish.posY = this.game.fish.posY + 25;
         this.game.fish.width = this.game.fish.width + 25;
         this.game.fish.height = this.game.fish.height + 30;
         console.log('I am fuming mate! ');
         var audio = new Audio('/audio/bottle.mp3');
         audio.play();
       }
-      //this.game.fish.radius = this.game.fish.radius + 25;
       this.game.fish.url = '/images/angryfish.png';
       setTimeout(() => {
         this.game.fish.url = '/images/fish.png';
-        // this.game.fish.posX = this.game.fish.posX - 25;
-        // this.game.fish.posY = this.game.fish.posY - 25;
         this.game.fish.width = 110;
         this.game.fish.height = 110;
       }, 5000);
@@ -59,7 +54,6 @@ class Bottle {
   }
 
   runLogic() {
-    //console.log('im running');
     this.posY += this.gravityY;
     this.posX -= this.gravityX;
   }
@@ -69,6 +63,5 @@ class Bottle {
     const bottle = new Image();
     bottle.src = bottleUrl;
     this.game.context.drawImage(bottle, this.posX, this.posY, this.width, this.height);
-    // this.game.context.fillRect(this.posX + 5, this.posY + 25, this.width - 50, this.height - 50);
   }
 }

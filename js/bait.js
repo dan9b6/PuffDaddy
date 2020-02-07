@@ -1,5 +1,0 @@
-// class Bait (){
-//   constructor(){
-
-//   }
-// }
