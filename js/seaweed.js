@@ -25,6 +25,8 @@ class Seaweed extends Obstacle {
       var audio = new Audio('/audio/seaweed.mp3');
       audio.play();
       console.log(type, 'Collision');
+      this.game.clearScreen();
+      gameoverImg.style.display = 'block';
     } else if (rx < dx && ry < dy) {
     }
   }

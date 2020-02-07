@@ -28,6 +28,8 @@ class Hook extends Obstacle {
       var audio = new Audio('/audio/pop.mov');
       audio.play();
       console.log(type, 'Collision');
+      this.game.clearScreen();
+      gameoverImg.style.display = 'block';
     } else if (rx < dx && ry < dy) {
     }
   }

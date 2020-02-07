@@ -8,17 +8,16 @@
     <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet" />
   </head>
   <body>
+    <div class="startScreen">
+      <img id="startImg" src="./images/start.png" alt="" />
+    </div>
+    <div class="gameOverScreen">
+      <img id="gameoverImg" src="./images/gameover.png" alt="" />
+    </div>
     <canvas width="1000" height="600"></canvas>
     <div class="center"><button type="button" id="start-button">START</button></div>
-    <p>
-      It's simple... SAVE PUFF DADDY! <br />
-      Use the spacebar to swim over the seaweed and under them fish hooks!<br />
-      Try and avoid that plastic to... you won't want to see Puff Daddy go mad. <br />
-    </p>
-    <div id="aside">
-      <h1 id="timer">Score:</h1>
-      <h1 id="highscore">Highscore:</h1>
-    </div>
+    <h1 id="timer">Score:</h1>
+    <h1 id="highscore">Highscore:</h1>
     <!------ SCRIPTS ------>
     <script src="./js/bait.js"></script>
     <script src="./js/obstacle.js"></script>
@@ -28,6 +27,7 @@
     <script src="./js/ground.js"></script>
     <script src="./js/fish.js"></script>
     <script src="./js/bg.js"></script>
+    <script src="./js/menu.js"></script>
     <script src="./js/control.js"></script>
     <script src="./js/game.js"></script>
     <script src="./js/main.js"></script>

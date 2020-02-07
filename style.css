@@ -28,6 +28,25 @@ p {
   text-align: center;
 }
 
-/* #aside {
-  display: inline;
-} */
+#startImg {
+  position: absolute;
+  left: 0;
+  width: 1000px;
+  height: 599px;
+  top: 10px;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#gameoverImg {
+  display: none;
+  position: absolute;
+  left: 0;
+  width: 1000px;
+  height: 599px;
+  top: 10px;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}

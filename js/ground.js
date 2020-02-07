@@ -24,6 +24,8 @@ class Ground {
 
     if (fishY + fishR >= this.groundY) {
       console.log('dead');
+      this.game.clearScreen();
+      gameoverImg.style.display = 'block';
       this.game.reset();
       this.game.finish = true;
     }
